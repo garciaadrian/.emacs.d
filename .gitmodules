@@ -1,0 +1,6 @@
+[submodule "3rd-party/cask"]
+	path = 3rd-party/cask
+	url = https://github.com/cask/cask.git
+[submodule "3rd-party/pdf-tools"]
+	path = 3rd-party/pdf-tools
+	url = https://github.com/garciaadrian/pdf-tools.git

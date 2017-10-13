@@ -1,5 +1,5 @@
 #+TITLE: Emacs configuration file
-#+AUTHOR: Lars Tveito
+#+AUTHOR: Adrian Garcia Cruz
 #+BABEL: :cache yes
 #+LATEX_HEADER: \usepackage{parskip}
 #+LATEX_HEADER: \usepackage{inconsolata}
@@ -42,6 +42,22 @@
   while), and you might have to restart your Emacs the first time. If you
   experience bugs, please let me know!
 
+* Prerequisites
+** Windows  
+   Install Cask, add to path temporarily
+   Install pdf-tools with dependencies on MSYS2 then copy epdfinfo to /mingw64/bin/
+   Add /mingw64/bin/ to $PATH
+   Follow pdf-tools install instructions
+
+   To make ispell work on windows, download and install aspell with any
+   language pack then add aspell.exe to your path
+
+   #+BEGIN_SRC emacs-lisp
+   (custom-set-variables
+    '(ispell-dictionary "english")
+    '(ispell-program-name "aspell.exe"))
+   #+END_SRC
+   
 * Configurations
 ** Meta
 
@@ -166,12 +182,15 @@
    (let* ((package--builtins nil)
           (packages
            '(auto-compile         ; automatically compile Emacs Lisp libraries
+             ag                   ; Silver searcher
              cider                ; Clojure Interactive Development Environment
              clj-refactor         ; A collection of clojure refactoring functions
              company              ; Modular text completion framework
+             cmake-mode           ; Mode for editing CMakeLists.txt files
              define-word          ; display the definition of word at point
              diminish             ; Diminished modes from modeline
              drag-stuff           ; Drag stuff around in Emacs
+             darktooth-theme      ; Darktooth theme
              erlang               ; Erlang major mode
              expand-region        ; Increase selected region by semantic units
              focus                ; Dim color of text in surrounding sections
@@ -393,13 +412,13 @@
 
 ** Visual
 
-   Change the color-theme to =leuven=.
+   Change the color-theme to =darktooth=.
 
    #+BEGIN_SRC emacs-lisp
-   (load-theme 'leuven t)
+   (load-theme 'darktooth t)
    #+END_SRC
 
-   =leuven= is my preferred light theme, but =monokai= makes a very nice
+   =darktooth= is my preferred light theme, but =monokai= makes a very nice
    dark theme. I want to be able to cycle between these.
 
    #+BEGIN_SRC emacs-lisp
@@ -415,8 +434,8 @@
    Use the [[http://www.levien.com/type/myfonts/inconsolata.html][Inconsolata]] font if it's installed on the system.
 
    #+BEGIN_SRC emacs-lisp
-   (cond ((member "Hasklig" (font-family-list))
-          (set-face-attribute 'default nil :font "Hasklig-14"))
+   (cond ((member "PragmataPro" (font-family-list))
+          (set-face-attribute 'default nil :font "PragmataPro-10.5"))
          ((member "Inconsolata" (font-family-list))
           (set-face-attribute 'default nil :font "Inconsolata-14")))
    #+END_SRC
